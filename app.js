@@ -5,11 +5,11 @@ const router = require("express").Router();
 const keep = require("./db/keep");
 const fs = require("fs")
 
-// Initialize the app and create a port
+// Let's initialize the app and set up a port
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Set up body parsing, static, and route middleware
+//  middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); 
 app.use(express.static("public"));
@@ -27,7 +27,7 @@ app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "/public/index.html"))
 });
 
-//GET `/api/notes` - Should read the `db.json` file and return all saved notes as JSON
+//return all saved notes as JSON
 app.get("/api/notes", function (req, res) {
     keep//from keep.js
         .getNotes()
@@ -36,7 +36,7 @@ app.get("/api/notes", function (req, res) {
         .catch(err => res.status(500).json(err));
 });
 
-//  * POST `/api/notes` 
+//  * POST 
 app.post("/api/notes", (req, res) => {
 
     keep
@@ -45,7 +45,7 @@ app.post("/api/notes", (req, res) => {
         .catch(err => res.status(500).json(err));
 });
 
-//DELETE `/api/notes/:id` 
+//DELETE 
 app.delete("/api/notes/:id", function (req, res) {
     keep
 
@@ -57,7 +57,7 @@ app.delete("/api/notes/:id", function (req, res) {
 
 
 
-// Start the server on the port
+// Let's Start the server 
 app.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`));
 
 

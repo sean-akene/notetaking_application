@@ -33,7 +33,7 @@ class Save {
         const { title, text } = note;
 
         if (!title || !text) {
-            throw new Error("Note 'title' & 'text' cannot be blank!");
+            throw new Error("Note 'title' & 'text' cannot be left blank!");
         }
 
         const newNote = { title, text, id: ++this.lastId };
